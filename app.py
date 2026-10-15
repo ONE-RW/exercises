@@ -23,7 +23,7 @@ SUBJECTS = {
     "Physics": "Physics",
 }
 
-st.set_page_config(page_title="Student Status | Academic Insights", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Student Status | Academic Insights", page_icon="◎", layout="wide", initial_sidebar_state="collapsed")
 
 st.markdown("""
 <style>
@@ -31,8 +31,6 @@ st.markdown("""
 :root { --ink:#13253b; --muted:#708096; --teal:#087e79; --teal-dark:#075d5a; --line:#e5edf2; --paper:#f5f8fa; }
 .stApp { background:var(--paper); color:var(--ink); font-family:'DM Sans',sans-serif; }
 [data-testid="stHeader"] { background:transparent; }
-[data-testid="stSidebar"] { background:#fff; border-right:1px solid var(--line); }
-[data-testid="stSidebar"] > div:first-child { padding-top:1.5rem; }
 .block-container { max-width:1240px; padding-top:2.3rem; padding-bottom:3rem; }
 h1,h2,h3 { font-family:'Manrope',sans-serif; color:var(--ink); letter-spacing:-.035em; }
 h1 { font-weight:800; font-size:2.5rem; margin:0 0 .3rem; }
@@ -58,8 +56,6 @@ h1 { font-weight:800; font-size:2.5rem; margin:0 0 .3rem; }
 [data-testid="stMetric"] { background:#fff; border:1px solid var(--line); border-radius:16px; padding:1rem 1.1rem; }
 [data-testid="stMetricLabel"] { color:var(--muted); }
 div[data-baseweb="input"] > div, div[data-baseweb="select"] > div { border-radius:10px; }
-.sidebar-brand { color:var(--teal); font:800 1.15rem 'Manrope',sans-serif; letter-spacing:-.03em; margin:0 0 1.4rem; }
-.sidebar-brand span { color:#8593a3; font:500 .75rem 'DM Sans',sans-serif; display:block; letter-spacing:.02em; margin-top:.2rem; }
 .small-note { font-size:.82rem; color:var(--muted); line-height:1.55; }
 @media(max-width:700px) { .block-container{padding:1.2rem 1rem 2rem}.hero{padding:1.5rem;border-radius:18px}.hero h1{font-size:1.7rem}h1{font-size:2rem} }
 </style>
@@ -89,19 +85,8 @@ except FileNotFoundError:
     st.error(f"Model file not found: {MODEL_PATH.name}. Put it next to app.py.")
     st.stop()
 
-with st.sidebar:
-    st.markdown('<div class="sidebar-brand">EDU<span>ACADEMIC INSIGHTS</span></div>', unsafe_allow_html=True)
-    st.markdown("### Model overview")
-    st.markdown(f"**Estimator**  \n{artifact['model_name']}")
-    st.markdown(f"**Cross-validation F1**  \n{artifact['cv_f1_mean']:.3f} <span style='color:#8291a1'>± {artifact['cv_f1_std']:.3f}</span>", unsafe_allow_html=True)
-    st.markdown(f"**Test accuracy**  \n{artifact['test_accuracy']:.1%}")
-    st.divider()
-    st.markdown("**About predictions**")
-    st.markdown('<p class="small-note">Blank marks are imputed automatically, using the same process as model training. Predictions with more missing marks may be less reliable.</p>', unsafe_allow_html=True)
-    st.caption("Student outcomes • O-level")
-
 st.markdown('''<div class="hero"><div class="hero-kicker">Student success • O-level</div><h1>Make every mark count.</h1><p>Explore a student's likely outcome with a clear, data-informed prediction. Enter marks individually or assess a whole class from a CSV.</p></div>''', unsafe_allow_html=True)
-tab_single, tab_batch = st.tabs(["👤  Individual student", "▦  Class assessment"])
+tab_single, tab_batch = st.tabs(["◉  Individual student", "▦  Class assessment"])
 
 with tab_single:
     st.markdown('<div class="section-heading">Student profile</div><div class="section-sub">Add the available subject marks. You can leave any unknown score blank.</div>', unsafe_allow_html=True)
