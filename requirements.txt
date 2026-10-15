@@ -1,0 +1,8 @@
+streamlit>=1.40
+pandas
+numpy
+joblib
+# IMPORTANT: use the exact version printed at the end of the notebook
+# ("Put this in requirements.txt -> scikit-learn==X.Y.Z"). A model pickled with
+# one scikit-learn version may fail or misbehave when loaded with another.
+scikit-learn==1.6.1
